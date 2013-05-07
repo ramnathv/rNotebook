@@ -1,7 +1,7 @@
 library(shiny)
 options(device.ask.default = FALSE)
 allow_knit = TRUE
-addResourcePath('Library', '/Library')
+# addResourcePath('Library', '/Library')
 
 createHTML <- function(src){
   library(knitr)
