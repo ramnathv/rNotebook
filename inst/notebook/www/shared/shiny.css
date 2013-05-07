@@ -1,0 +1,84 @@
+body.disconnected {
+  background-color: #999;
+  opacity: 0.5;
+}
+
+table.data {
+  width: auto;
+}
+table.data td[align=right] {
+  font-family: monospace;
+  text-align: right;
+}
+
+.shiny-output-error {
+  color: red;
+}
+.shiny-output-error:before {
+  content: 'Error: ';
+  font-weight: bold;
+}
+
+.jslider {
+  /* Fix jslider running into the control above it */
+  margin-top: 18px;
+}
+.jslider-value {
+  /* Remove box around jslider values on colored bg */
+  background-color: transparent !important;
+}
+
+.recalculating {
+  opacity: 0.3;
+  transition: opacity 250ms ease 500ms;
+  -moz-transition: opacity 250ms ease 500ms;
+  -webkit-transition: opacity 250ms ease 500ms;
+  -o-transition: opacity 250ms ease 500ms;
+}
+
+span.jslider {
+  margin-bottom: 12px;
+}
+.slider-animate-container {
+  text-align: right;
+  margin-top: -9px;
+}
+.slider-animate-button {
+  opacity: 0.5;
+}
+.slider-animate-button .pause {
+  display: none;
+}
+.slider-animate-button.playing .pause {
+  display: inline;
+}
+.slider-animate-button .play {
+  display: inline;
+}
+.slider-animate-button.playing .play {
+  display: none;
+}
+
+.progress.shiny-file-input-progress {
+  position: relative;
+  visibility: hidden;
+}
+.progress.shiny-file-input-progress .bar {
+  overflow: hidden;
+}
+.progress.shiny-file-input-progress label {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 12px;
+  padding: 0 6px;
+}
+.progress.shiny-file-input-progress .bar.bar-danger {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}

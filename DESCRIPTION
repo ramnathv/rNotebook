@@ -1,0 +1,9 @@
+Package: rNotebook
+Type: Package
+Title: A browser based R Notebook
+Version: 0.0.1
+Date: 2013-05-07
+Author: Ramnath Vaidyanathan
+Maintainer: Ramnath Vaidyanathan <ramnath.vaidya@gmail.com>
+Description: A browser based R Notebook
+License: MIT
