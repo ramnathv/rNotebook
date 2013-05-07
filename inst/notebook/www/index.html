@@ -63,10 +63,10 @@
 
           <input id="fileinput" class="input-large" type="text" 
 
-             placeholder="enter gist id">
+             placeholder="select local file">
              
 
-          <!-- 
+          
           <button id="btnBrowse" class="btn btn-small view" rel="tooltip" 
 
             title="browse file &lt;br&gt;Mac : &#8984; + o&lt;br&gt;Win : ctrl + o">
@@ -74,7 +74,7 @@
             <i class="icon-folder-open"></i>
 
           </button>
-          -->
+    
 
           <button id="btnRead" class="btn btn-small view" rel="tooltip" 
 
@@ -202,66 +202,7 @@
 </header>
   <section id="main">
     <div id="published" class="shiny-text-output"></div>
-    <div id="notebook" title="Compile notebook: F4&#10;Insert chunk: Ctrl+Alt+I"># A Minimal Example for Markdown
-
-This is a minimal example of using **knitr** to produce an _HTML_ page from _Markdown_.
-
-## R code chunks
-
-```{r setup}
-# set global chunk options: images will be 7x5 inches
-opts_chunk$set(fig.width=7, fig.height=5)
-```
-
-Now we write some code chunks in this markdown file:
-
-```{r computing}
-x <- 1+1 # a simple calculator
-set.seed(123)
-rnorm(5)  # boring random numbers
-```
-
-We can also produce plots:
-
-```{r graphics}
-par(mar = c(4, 4, .1, .1))
-with(mtcars, {
-plot(mpg~hp, pch=20, col='darkgray')
-lines(lowess(hp, mpg))
-})
-```
-
-## Inline code
-
-Inline R code is also supported, e.g. the value of `x` is `r x`, and 2 &times; &pi;
-= `r 2*pi`.
-
-## Math
-
-LaTeX math as usual: $f(\alpha, \beta) \propto x^{\alpha-1}(1-x)^{\beta-1}$.
-
-## Misc
-
-You can indent code chunks so they can nest within other environments such as lists.
-
-1. the area of a circle with radius x
-```{r foo}
-pi * x^2
-```
-2. OK, that is great
-
-To compile me, use
-
-```{r compile, eval=FALSE}
-library(knitr)
-knit('knitr-minimal.Rmd')
-```
-
-## Conclusion
-
-Markdown is super easy to write. Go to **knitr** [homepage](http://yihui.name/knitr) for details.     
-
-    </div>
+    <div id="notebook" title="Compile notebook: F4&#10;Insert chunk: Ctrl+Alt+I"></div>
     <textarea id="nbSrc" style="display: none;"></textarea>
     <div id="nbOut" class="shiny-html-output"></div>
   </section>

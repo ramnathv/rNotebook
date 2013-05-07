@@ -131,8 +131,8 @@ function handleOnClick(id){
     break;
     case "btnRead":
       // read local file    
-    // readFile();
-    readGist();
+    readFile();
+    // readGist();
     break;    
     case "btnRawMd":
       // show Raw .md file    
