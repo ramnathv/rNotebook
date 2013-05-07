@@ -6,7 +6,7 @@ You can install the package from github using `devtools` and use `viewNotebook` 
 
 ```coffee
 require(devtools)
-install_github('rNotebook', 'devtools')
+install_github('rNotebook', 'ramnathv')
 rNotebook::viewNotebook()
 ```
 
