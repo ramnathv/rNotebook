@@ -162,6 +162,10 @@ function handleOnClick(id){
       console.log("Knitting...")
       runCode();
     break;
+    case "clearSrc":
+      console.log("Clearing...");
+      clearSrc();
+    break;
     
     default:
       console.log("Error:invalid case");
@@ -274,7 +278,14 @@ function changeMode(e){
   $target.addClass('selected')
   var newMode = $target.attr('data-value')
   $(e.target).blur()
-  application.mode = newMode     
+  application.mode = newMode
+  if (newMode == "R"){
+    application.editor.getSession().setMode('ace/mode/r')
+    $("#btnConv2").html('<i class="icon-play icon-white"></i>&nbsp;Run')
+  } else {
+    application.editor.getSession().setMode('ace/mode/markdown')
+    $("#btnConv2").html('<i class="icon-play icon-white"></i>&nbsp;Knit')
+  }
 }
 
 // Setup ace editor and tie it to a textarea
@@ -485,3 +496,8 @@ function runCode2(){
     */
   });
 };
+
+function clearSrc(){
+  application.editor.setValue("");
+  $('#nbOut').html("");
+}
