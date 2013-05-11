@@ -9,7 +9,8 @@ window.application = {
   db:localStorage,
   converter:"marked", // default converter is `marked`
   isRendering:false,
-  rmdfile: "example.Rmd"
+  rmdfile: "example.Rmd",
+  mode: "Rmd"
 };
 window.URL = window.URL || window.webkitURL;
 
@@ -63,6 +64,13 @@ $(function(){
     .find('li > a')
     .bind('click', function(e){
       changeAceTheme(e)
+      return false
+    })
+    
+  $('#mode')
+    .find('li > a')
+    .bind('click', function(e){
+      changeMode(e)
       return false
     })
     
@@ -152,6 +160,7 @@ function handleOnClick(id){
     break;
     case "btnConv2":
       console.log("Knitting...")
+      runCode();
     break;
     
     default:
@@ -256,6 +265,16 @@ function changeAceTheme(e){
   var newTheme = $target.attr('data-value')
   $(e.target).blur()
   application.editor.setTheme(newTheme)       
+}
+
+function changeMode(e){
+  // check for same theme
+  var $target = $(e.target), $mode = $('#mode');
+  $mode.find('li > a.selected').removeClass('selected')
+  $target.addClass('selected')
+  var newMode = $target.attr('data-value')
+  $(e.target).blur()
+  application.mode = newMode     
 }
 
 // Setup ace editor and tie it to a textarea
@@ -392,3 +411,77 @@ function exec_body_scripts(body_el) {
     evalScript(scripts[i]);
   }
 }; 
+
+// Run Code using OpenCPU
+function runCode(){
+  $("#knitForm").submit(function(event){
+    console.log('submitting form')
+    event.preventDefault(); 
+    /* get some values from elements on the page: */
+    
+    var $form = $( this ),
+      url = $form.attr('action'),
+      term = $("#nbSrc").val().replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+      
+    if (application.mode === "R"){
+      term = "```{r echo = F, message = F, warning = F, comment = NA}\n" + term + "\n```"
+    }
+    /*
+      rcode = 'library(knitr)\n' +
+        'knit2html(text = "' + term2 + '", fragment.only = TRUE)',
+      rcode2 = 'library(knitr)\n' +
+        'knit2html(text = knit(text = "' + term2 + '"), fragment.only = TRUE)';
+    */
+      rcode = 'library(knitr)\n' +
+        'knit2html(text = knit(text = "' + term + '"), fragment.only = TRUE)';
+      
+    /* Send the data using post and put the results in a div */
+    $.post(url, { x: rcode },
+      function( data ) {
+          $('#nbOut').html(eval(data));
+          $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+      })
+      .error(function() { alert("An error occurred!"); });
+  });
+  $("#knitForm").submit();
+}
+
+function runCode2(){
+  
+  var btnEl = "#btnConv2"
+      formEl = "#knitForm",
+      textEl = "#nbSrc",
+      resultEl = "#nbOut";
+  $(btnEl).click(function() {
+    $(formEl).submit();
+  });
+  
+  /* attach a submit handler to the form */
+  $(formEl).submit(function(event) {
+
+    /* stop form from submitting normally */
+    event.preventDefault(); 
+      
+    /* get some values from elements on the page: */
+    var $form = $( this ),
+      term = $(textEl).val().replace(/\\/g, '\\\\').replace(/"/g, '\\"'),
+      term2 = "```{r echo = F, message = F, warning = F, comment = NA}\n" + term + "\n```"
+      url = $form.attr('action'),
+      rcode = 'library(knitr)\n' +
+        'knit2html(text = "' + term + '", fragment.only = TRUE)',
+      rcode2 = 'library(knitr)\n' +
+        'knit2html(text = knit(text = "' + term2 + '"), fragment.only = TRUE)';
+      
+    /* Send the data using post and put the results in a div */
+    $.post(url, { x: rcode },
+      function( data ) {
+          $(resultEl).html(eval(data));
+          $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+      })
+      .error(function() { alert("An error occurred!"); });
+    /*
+      .complete(function() {$(btnEl).attr('class', 'btn btn-small');})
+      
+    */
+  });
+};

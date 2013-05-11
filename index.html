@@ -36,19 +36,18 @@
 
       <form class="navbar-form pull-left">
 
-        <!--
+        
 
-        <button id="btnConv2" class="btn btn-small btn-inverse view" 
+        <a id="btnConv2" class="btn btn-small btn-primary view" 
 
-          rel="tooltip" type="submit"
+          rel="tooltip"
 
             title="convert &lt;br&gt;Mac : &#8984; + e&lt;br&gt;Win : ctrl + e">
 
           <i class="icon-play icon-white"></i>&nbsp;Knit
 
-        </button>&nbsp;
+        </a>&nbsp;
         
-        -->
           
        
         
@@ -63,7 +62,7 @@
 
           <input id="fileinput" class="input-large" type="text" 
 
-             placeholder="enter gist id">
+             placeholder="enter id to load gist">
              
 
           <!-- 
@@ -126,6 +125,16 @@
       </form>
 
       <ul class="nav pull-right">
+        <li class="dropdown">
+
+          <a href="#" id="drop6" role="button" class="dropdown-toggle" data-toggle="dropdown">Mode <b class="caret"></b></a>
+
+          <ul id="mode" class="dropdown-menu" role="menu" aria-labelledby="drop6">
+
+            <li><a tabindex="-1" href="#" data-value="Rmd" class="selected">Rmd</a></li>
+
+            <li><a tabindex="-1" href="#" data-value="R">R</a></li>
+          </ul>
 
         <li class="dropdown">
 
@@ -254,7 +263,10 @@ knit('knitr-minimal.Rmd')
 Markdown is super easy to write. Go to **knitr** [homepage](http://yihui.name/knitr) for details.     
 
     </div>
-    <textarea id="nbSrc" style="display: none;"></textarea>
+    <form action="http://public.opencpu.org/R/pub/base/identity/ascii" 
+      method="POST" id="knitForm">
+        <textarea id="nbSrc" style="display: none;"></textarea>
+    </form>
 <div id="nbOut" class="shiny-html-output">
 <h1>A Minimal Example for Markdown</h1>
 
