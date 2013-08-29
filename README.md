@@ -12,6 +12,8 @@ rNotebook::viewNotebook()
 
 An online Rmd viewer is available at http://ramnathv.github.io/rNotebook. This can load gists that contain the Rmd source file and the knit html (with the option fragment.only = TRUE). You can try this gist as an example https://gist.github.com/ramnathv/329519485740729e38af.
 
+__Note__: The online Rmd viewer is broken due to recent changes in the OpenCPU API. I will be updating rNotebook to make use of the latest API shortly.
+
 ### Motivation
 
 Motivated by the excellent iPython notebook environment, I wanted to create a similar experience for R users. Yihui had already designed a Shiny app that let users knit an Rmd file in the cloud. However, it had to be taken down due to security concerns, as a user could potentially run any malicious code in the Rmd file.
